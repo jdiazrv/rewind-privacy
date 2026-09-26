@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidad — REWIND Panel</title>
+<style>
+  :root {
+    --bg: #071015;
+    --panel: #101c24;
+    --text: #f3fbff;
+    --muted: #9fb3bd;
+    --cyan: #19c7e8;
+    --border: #1e3040;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+  }
+  .updated { color: var(--muted); font-size: 14px; margin: 0 0 36px 0; }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cyan);
+    margin: 40px 0 12px 0;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  p, li { color: var(--text); font-size: 15px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--cyan); }
+  .box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  code {
+    background: var(--panel);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Política de privacidad de REWIND Panel</h1>
+  <p class="updated">Última actualización: 26 de septiembre de 2026</p>
+
+  <div class="box">
+    Resumen: REWIND Panel no recopila, almacena ni comparte tus datos personales.
+    La app se conecta directamente desde tu dispositivo al servidor Signal K de
+    tu propio barco, con la configuración que tú introduces — no existe ningún
+    servidor intermedio operado por el desarrollador.
+  </div>
+
+  <h2>Qué datos usa la app y dónde van</h2>
+  <p>REWIND Panel es un panel de instrumentos náutico que muestra datos en
+  tiempo real de tu barco. Para funcionar, se conecta directamente a:</p>
+  <ul>
+    <li><strong>Tu servidor Signal K</strong> — el host, puerto y credenciales
+    (si tu servidor las requiere) que introduces en Ajustes. La app envía y
+    recibe estos datos únicamente entre tu dispositivo y ese servidor.</li>
+    <li><strong>InfluxDB (opcional)</strong> — solo si tú introduces manualmente
+    un host, organización, token y bucket propios en Ajustes → Histórico, para
+    mostrar gráficas del historial de tu barco. No se incluye ninguna
+    credencial por defecto.</li>
+    <li><strong>Open-Meteo</strong> (<a href="https://open-meteo.com" target="_blank" rel="noopener">open-meteo.com</a>) —
+    para el pronóstico meteorológico, usando la posición GPS de tu barco o una
+    ubicación que elijas manualmente en el mapa.</li>
+    <li><strong>Wikidata y Wikimedia Commons</strong> — solo al abrir el detalle de un barco
+    en la pantalla AIS, para intentar mostrar su foto pública por MMSI (un
+    número de identificación de barco, no un dato personal tuyo).</li>
+    <li><strong>Mapas</strong> — teselas de OpenStreetMap, OpenSeaMap y Esri
+    World Imagery para dibujar el mapa. Cada petición revela a ese servicio la
+    zona que estás mirando.</li>
+    <li><strong>Nominatim (OpenStreetMap)</strong> — solo al buscar un lugar o
+    poner nombre a una posición; se envía el texto buscado o esas coordenadas.</li>
+    <li><strong>Previsión en el servidor del barco</strong> — el plugin de
+    REWIND en tu Signal K descarga previsión de DWD (Alemania) y NOAA (EE. UU.)
+    para la zona del barco.</li>
+    <li><strong>Pushover y Pushsafer</strong> — solo si los activas con tus
+    propias claves: igual que ntfy, reciben el texto de las alarmas que hayas
+    marcado para avisar.</li>
+    <li><strong>boatlog</strong> — solo si lo activas: recibe las horas de
+    motor al apagarlo.</li>
+    <li><strong>ntfy.sh</strong> (<a href="https://ntfy.sh" target="_blank" rel="noopener">ntfy.sh</a>) —
+    solo si activas los avisos push en Ajustes → Alarmas y configuras un
+    "topic". Cuando salta una alarma que hayas marcado para avisar, el
+    servidor Signal K de tu barco (o la app, si el servidor no responde) envía
+    a ntfy.sh un mensaje de texto (con los datos de esa
+    alarma: por ejemplo posición/distancia/velocidad de garreo, viento o
+    profundidad) y, solo para la alarma de garreo, una imagen con la
+    posición del barco respecto al círculo de fondeo. Cualquiera que
+    conozca el nombre exacto de tu "topic" podría suscribirse a esos avisos
+    en ntfy.sh — elige un nombre no adivinable.</li>
+  </ul>
+  <p>Ninguno de estos datos pasa por servidores del desarrollador de la app:
+  las conexiones van desde tu dispositivo, o desde el servidor Signal K de tu
+  propio barco, directamente a los servicios anteriores. Varios están fuera de
+  la UE (por ejemplo en EE. UU.); cada uno se rige por su propia política.</p>
+
+  <h2>Qué se guarda en tu dispositivo</h2>
+  <p>La configuración de la app (host y puerto de Signal K, credenciales que
+  tú introduzcas, sensores configurados, alarmas personalizadas, preferencias
+  de pantalla) se guarda únicamente en el almacenamiento local de tu
+  dispositivo (<code>SharedPreferences</code> de Android, o el almacenamiento
+  del navegador si usas la versión webapp). La configuración del barco
+  (alarmas, sensores, claves de los servicios de aviso) se guarda además en el
+  servidor Signal K de tu propio barco, para que todos tus aparatos la
+  compartan; no hay ninguna cuenta ni servidor del desarrollador. Las credenciales se guardan en el almacenamiento
+    seguro del sistema en Android; en la versión web quedan en el almacenamiento
+    local del perfil del navegador.</p>
+  <p>Cuando hay varios dispositivos conectados al mismo barco, la app publica en
+    tu propio servidor Signal K el estado y la geometría del fondeo para
+    sincronizarlos. También puede compartir por ese servidor la configuración de
+    conexión al histórico que hayas introducido. El plugin de vigilancia de
+    fondeo instalado en Signal K lee ese estado y puede continuar evaluando el
+    garreo aunque ningún panel esté abierto. Ese mismo plugin vigila las
+    alarmas, guarda su historial en tu servidor y es quien manda los avisos
+    al móvil por los servicios que hayas activado.</p>
+  <p>La previsión meteorológica se conserva temporalmente en el dispositivo,
+    junto con las coordenadas aproximadas para las que fue descargada, para
+    evitar solicitudes repetidas y no reutilizar una previsión de otra zona.</p>
+
+  <h2>Cuentas, analítica y publicidad</h2>
+  <p>REWIND Panel no requiere crear ninguna cuenta, no incluye publicidad, y
+  no utiliza herramientas de analítica o seguimiento de terceros. No se
+  recopila información sobre el uso de la app.</p>
+
+  <h2>Permisos del dispositivo</h2>
+  <p>La app puede solicitar acceso a los sensores de movimiento del
+  dispositivo (acelerómetro/magnetómetro) únicamente si activas la opción de
+  usar el propio teléfono/tablet como sensor de escora, para barcos sin
+  sensor de actitud propio. Esa lectura se usa solo en tiempo real, dentro
+  de la propia app, para calcular y mostrar la escora y el cabeceo — no se
+  almacena ni se envía a ningún servidor.</p>
+  <p><strong>Ubicación (GPS)</strong> — la pantalla de fondeo (ANC) usa
+  normalmente la posición que reporta tu servidor Signal K, no el GPS del
+  dispositivo. Solo si Signal K no tiene posición del barco, y solo tras
+  pedirte permiso explícito en pantalla, la app puede usar el GPS de tu
+  móvil/tablet como alternativa temporal mientras dure esa situación. Esa
+  posición se usa únicamente para calcular si el barco se ha salido del
+  círculo de fondeo (y se envía a Signal K y, si tienes avisos activados,
+  a ntfy.sh, igual que la posición normal) — no se guarda un historial de
+  tu ubicación personal en ningún otro sitio.</p>
+  <p><strong>Actividad física (podómetro)</strong> — solo mientras la
+  detección de "¿te has llevado el móvil?" está activa en la pantalla de
+  fondeo (para avisar si el móvil se aleja del barco mientras hace de
+  respaldo del GPS), la app puede leer el contador de pasos del sistema.
+  Es una lectura puntual, no se guarda ningún registro de tu actividad.</p>
+  <p><strong>Red WiFi</strong> — la misma detección de "¿te has llevado el
+  móvil?" puede comprobar el nombre (SSID) de la red WiFi a la que estás
+  conectado, para saber si sigues en la del propio barco. Ese nombre no se
+  envía a ningún servidor, solo se compara localmente en el dispositivo.
+  La app también usa multidifusión local (mDNS) para resolver el nombre
+  de tu servidor Signal K (por ejemplo "midominio.local") dentro de tu
+  propia red — no sale tráfico fuera de esa red local para esto.</p>
+
+  <h2>Menores</h2>
+  <p>La app no está dirigida a menores y no recopila intencionadamente datos
+  de menores de edad.</p>
+
+  <h2>Cambios en esta política</h2>
+  <p>Si esta política cambia, se actualizará esta misma página con una nueva
+  fecha de actualización.</p>
+
+  <h2>Contacto</h2>
+  <p>Para cualquier consulta sobre esta política de privacidad, escribe al
+  correo de contacto del desarrollador que figura en la ficha de la app en
+  Google Play.</p>
+</div>
+</body>
+</html>
