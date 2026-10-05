@@ -61,13 +61,22 @@
 <body>
 <div class="wrap">
   <h1>Política de privacidad de REWIND Panel</h1>
-  <p class="updated">Última actualización: 26 de septiembre de 2026</p>
+  <p class="updated">Última actualización: 5 de octubre de 2026</p>
 
   <div class="box">
-    Resumen: REWIND Panel no recopila, almacena ni comparte tus datos personales.
-    La app se conecta directamente desde tu dispositivo al servidor Signal K de
-    tu propio barco, con la configuración que tú introduces — no existe ningún
-    servidor intermedio operado por el desarrollador.
+    Resumen:
+    <ul>
+      <li><strong>El desarrollador no recibe tus datos.</strong> No hay cuenta
+      ni servidor del desarrollador: la app habla con el servidor Signal K de
+      tu barco.</li>
+      <li><strong>Se guardan en tu dispositivo y en tu barco</strong> la
+      configuración, las credenciales que introduzcas, la última posición del
+      barco y la traza del fondeo.</li>
+      <li><strong>Algunos servicios externos reciben datos</strong> para
+      funcionar: el tiempo y los mapas reciben la zona o la posición; los
+      avisos al móvil (ntfy, Pushover, Pushsafer), el texto de las alarmas que
+      actives. Abajo está cada uno y qué recibe.</li>
+    </ul>
   </div>
 
   <h2>Qué datos usa la app y dónde van</h2>
@@ -83,7 +92,10 @@
     credencial por defecto.</li>
     <li><strong>Open-Meteo</strong> (<a href="https://open-meteo.com" target="_blank" rel="noopener">open-meteo.com</a>) —
     para el pronóstico meteorológico, usando la posición GPS de tu barco o una
-    ubicación que elijas manualmente en el mapa.</li>
+    ubicación que elijas manualmente en el mapa. Las rutas pueden leer además
+    su archivo de modelos (ficheros de datos en Amazon S3). Según su propia
+    política, Open-Meteo guarda en sus registros las coordenadas consultadas
+    hasta 90 días.</li>
     <li><strong>Wikidata y Wikimedia Commons</strong> — solo al abrir el detalle de un barco
     en la pantalla AIS, para intentar mostrar su foto pública por MMSI (un
     número de identificación de barco, no un dato personal tuyo).</li>
@@ -125,8 +137,11 @@
   (alarmas, sensores, claves de los servicios de aviso) se guarda además en el
   servidor Signal K de tu propio barco, para que todos tus aparatos la
   compartan; no hay ninguna cuenta ni servidor del desarrollador. Las credenciales se guardan en el almacenamiento
-    seguro del sistema en Android; en la versión web quedan en el almacenamiento
-    local del perfil del navegador.</p>
+    seguro del sistema en Android. En la versión web, la contraseña dura solo
+    mientras la pestaña sigue abierta, salvo que actives «Recordar en este
+    navegador»: entonces queda guardada sin cifrar en el perfil del navegador.
+    En el servidor del barco, los ficheros con claves solo los puede leer el
+    usuario del servidor.</p>
   <p>Cuando hay varios dispositivos conectados al mismo barco, la app publica en
     tu propio servidor Signal K el estado y la geometría del fondeo para
     sincronizarlos. También puede compartir por ese servidor la configuración de
